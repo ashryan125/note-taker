@@ -1,3 +1,5 @@
+// const { response } = require("express");
+
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -26,28 +28,59 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
-  fetch('/api/notes', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  // fetch('/api/notes').then(async response => {
+  //   try {
+  //     const data = await response.json();
+  //     console.log('response data?', data);
+  //   } catch (error) {
+  //     console.log('Error happened here');
+  //     console.error(error);
+  //   }
+  // });
+fetch('/api/notes', {
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }                                              
+});
 
-const saveNote = (note) =>
+
+const saveNote = (note) => {
   fetch('/api/notes', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(note),
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
   });
+};
+// const saveNote = (note) =>
+//   fetch('/api/notes', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(note)
+//   })
+//     .then(response => {
+//       if (response.ok) {
+//         return response.json();
+//       }
+//       alert('Error: ' + response.statusText);
+//     })
+//     .then(postResponse => {
+//       console.log(postResponse);
+//       alert('A new note added!');
+//     });
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json',
-    },
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
   });
 
 const renderActiveNote = () => {
@@ -172,6 +205,7 @@ const renderNoteList = async (notes) => {
 
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
+
 
 if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
