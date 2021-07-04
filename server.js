@@ -16,14 +16,16 @@ const { notes } = require('./data/notesData.json');
 function createNewNote(body, notesArray) {
     const note = body;
     notesArray.push(note);
-
+ 
+    // updates json file with new note
     fs.writeFileSync(
         path.join(__dirname, './data/notesData.json'),
         JSON.stringify({ notes: notesArray }, null, 2)
     );
 
     // return finished code to post route for response
-    return body;
+    return notes;
+    console.log(notes);
 };
 
 function validateNote(note) {
@@ -42,13 +44,9 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
 // display data to page
 app.get('/api/notes', (req, res) => {
-    fs.readFile('data/notesData.json', 'utf8', function (err, data) {
+    fs.readFile('./data/notesData.json', 'utf8', function (err, data) {
         if (err) {
             console.log(err);
             return;
@@ -57,10 +55,14 @@ app.get('/api/notes', (req, res) => {
     });
 });
 
-// post data
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+
 app.post('/api/notes', (req, res) => {
     // set id based on what the next index of the array will be
-    req.body.id = notesData.length.toString();
+    req.body.id = notes.length.toString();
 
     // if any data in req.body is incorrect, send 400 error back
     if (!validateNote(req.body)) {

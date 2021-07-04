@@ -1,7 +1,7 @@
 # Note Taker
 
 ## Description
-
+An application that can be used to write, save, and delete notes using an express.js backend.
 
 ## Table of Contents
 
@@ -12,14 +12,21 @@
 * [Video of App in Action](#video)
 
 ## Installation
-You must install Node.js, fs package, npm express.js
+Clone the Github repo.
+```https://github.com/ashryan125/note-taker.git```
+
+Once in the properly cloned folder, run ```npm install``` to install the following dependencies:
+ * Express:  ```npm i express``` to use Express.js in your command line.
+
 
 ## Usuage
-
+ #### **LOCAL USAGE:** 
+ Enter ```npm start``` in your command line and press ```ENTER```. 
+ After receiving the notification ```App listening on PORT 3001```, open your browser and use ```http://localhost:3001``` to access the Note Taker App. 
+#### **USE IN BROWSER:**
+You can also use this app directly from the [deployed Heroku site](https://lit-brushlands-27334.herokuapp.com/).
  
-## Features
-  
-
+ 
 ## User Story
 ```
 AS A small business owner

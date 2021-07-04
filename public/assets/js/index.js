@@ -1,5 +1,3 @@
-// const { response } = require("express");
-
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -28,23 +26,35 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
-  // fetch('/api/notes').then(async response => {
-  //   try {
-  //     const data = await response.json();
-  //     console.log('response data?', data);
-  //   } catch (error) {
-  //     console.log('Error happened here');
-  //     console.error(error);
-  //   }
-  // });
-fetch('/api/notes', {
-  method: 'GET',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }                                              
-});
+  fetch('/api/notes', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  });
 
+
+// const saveNote = (note) => {
+//   fetch('/api/notes', {
+//     method: 'POST',
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(note)
+//   })
+//   .then(response => {
+//     if (response.ok) {
+//       return response.json();
+//     }
+//     alert('Error: ' + response.statusText);
+//   });
+//   // .then(postResponse => {
+//   //   console.log(postResponse);
+//   //   alert('Thank you for adding another note!');
+//   // });
+// };
 
 const saveNote = (note) => {
   fetch('/api/notes', {
@@ -55,24 +65,6 @@ const saveNote = (note) => {
     }
   });
 };
-// const saveNote = (note) =>
-//   fetch('/api/notes', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(note)
-//   })
-//     .then(response => {
-//       if (response.ok) {
-//         return response.json();
-//       }
-//       alert('Error: ' + response.statusText);
-//     })
-//     .then(postResponse => {
-//       console.log(postResponse);
-//       alert('A new note added!');
-//     });
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -102,8 +94,9 @@ const renderActiveNote = () => {
 const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
-    text: noteText.value,
+    text: noteText.value
   };
+  console.log(newNote);
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
