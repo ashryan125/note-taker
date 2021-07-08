@@ -5,11 +5,19 @@ An application that can be used to write, save, and delete notes using an expres
 
 ## Table of Contents
 
+* [Built With](#built-with)
 * [Installation](#installation)
 * [Usage](#usage)
 * [User Story](#user-story)
 * [Acceptance Criteria](#acceptance-criteria)
 * [Video of App in Action](#video)
+
+## Built With
+* HTML
+* CSS / Bootstrap
+* JavaScript
+* Node.js
+* Express.js
 
 ## Installation
 Clone the Github repo.
@@ -17,6 +25,7 @@ Clone the Github repo.
 
 Once in the properly cloned folder, run ```npm install``` to install the following dependencies:
  * Express:  ```npm i express``` to use Express.js in your command line.
+ * uniqid: ```npm i uniqid``` to use uniqid for unique id generation
 
 
 ## Usuage
