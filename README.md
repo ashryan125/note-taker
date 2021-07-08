@@ -62,4 +62,4 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 ```
 
 ## Video
-![Note Taking App gif](#)
+![Note Taking App gif](./public/assets/img/noteTaker.gif)
